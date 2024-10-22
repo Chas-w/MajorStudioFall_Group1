@@ -52,6 +52,7 @@ public class InstrumentPlayer: MonoBehaviour
     void Update()
     {
         PlayNotes();
+
     }
     private void FixedUpdate()
     {
@@ -93,6 +94,8 @@ public class InstrumentPlayer: MonoBehaviour
 
                     instrument.PlayOneShot(instrumentNotes[index]);
                     SaveNotes();
+
+                    
                 }
                
             }
@@ -100,6 +103,10 @@ public class InstrumentPlayer: MonoBehaviour
         }
         if (pluck)
         {
+            //*****************New Code*****************
+            GameManager.instance.instrumentIsPlaying = true;
+
+
             pluckTimer -= Time.deltaTime; 
             if (pluckTimer <= 0)
             {
@@ -167,6 +174,5 @@ public class InstrumentPlayer: MonoBehaviour
 
 
     }
-
 
 }

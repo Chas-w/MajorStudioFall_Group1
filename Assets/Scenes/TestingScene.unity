@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc795d05dc3eeef4aab147af313f0c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 45
+  sensX: 300
   sensY: 40
   pMovement: {fileID: 1490930240}
   orientation: {fileID: 1813834393}
@@ -843,6 +843,60 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1568676074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1568676076}
+  - component: {fileID: 1568676075}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1568676075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568676074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0346737a17f340441a4908e2c35811af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorCld: {fileID: 1393179994}
+  enemyPrefab: {fileID: 5304637327970205387, guid: f04752c8dee87bc4ebb0c06f7b8026cd, type: 3}
+  enemyNum: 3
+  enemyList: []
+  enemySpeed: 2
+  enemyMaxSpeed: 5
+  enemyAttackRange: 3
+  instrumentIsPlaying: 0
+  timer: 2
+  player: {fileID: 1490930237}
+--- !u!4 &1568676076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568676074}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.671102, y: -10.046565, z: 37.948574}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1781724286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,3 +1110,4 @@ SceneRoots:
   - {fileID: 1393179997}
   - {fileID: 214131748}
   - {fileID: 355210198}
+  - {fileID: 1568676076}
