@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     public Collider floorCld;
 
     [Header("Enemy Settings")]
+    public GameObject enemyParent;
     public GameObject enemyPrefab;
     public int enemyNum;
     public List<Enemy> enemyList;
@@ -22,10 +24,16 @@ public class GameManager : MonoBehaviour
     [Header("Player Settings")]
     public GameObject player;
 
+    private void Awake()
+    {
+        instance = this;
+        //InitializeEnemyList();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        
         SpawnEnemy();
     }
 
@@ -35,6 +43,7 @@ public class GameManager : MonoBehaviour
         EnemyMovement();
     }
 
+    
     void SpawnEnemy()
     {
         GameObject enemyParent = new GameObject("EnemyParent");
@@ -45,6 +54,19 @@ public class GameManager : MonoBehaviour
             enemy.transform.position = new Vector3(Random.Range(-floorCld.bounds.extents.x, floorCld.bounds.extents.x), 0, Random.Range(-floorCld.bounds.extents.z, floorCld.bounds.extents.z));
         }
     }
+    
+
+    /*
+    void InitializeEnemyList()
+    {
+        enemyNum = enemyParent.transform.childCount;
+        for (int i = 0; i < enemyNum; i++)
+        {
+            enemyList.Add(enemyParent.transform.GetChild(i).GetComponent<Enemy>());
+        }
+        
+    }
+    */
 
     void EnemyMovement()
     {
