@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -19,9 +20,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
 
+    [Header("Audio Data")]
+    [SerializeField] AudioSource stepSource;
+    [SerializeField] AudioClip[] footsteps;
+    [SerializeField] float stepTimerMax; 
+
     Vector3 velocity;
 
     bool isGrounded;
+    float stepTimer;
+    int stepChoice; 
     // Start is called before the first frame update
     void Start()
     {
@@ -56,8 +64,21 @@ public class PlayerMovement : MonoBehaviour
 
 
         controller.Move(velocity * Time.deltaTime);
+        playFootsteps();
+        
+    }
 
-
+    private void playFootsteps()
+    {
+        if (isGrounded && (mX != 0 || mZ != 0))
+        {
+            stepTimer -= Time.deltaTime; 
+            if(stepTimer <= 0)
+            {
+                stepSource.PlayOneShot(footsteps[(Random.Range(0, footsteps.Length))]);
+                stepTimer = stepTimerMax; 
+            }
+        }
     }
 
 }
