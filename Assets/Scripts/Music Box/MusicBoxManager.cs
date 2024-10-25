@@ -22,7 +22,7 @@ public class MusicBoxManager : MonoBehaviour
     {
         gm = gameManagerObject.GetComponent<GameManager>();
 
-        if (gm.correctCombination) //when the puzzle is solved the enemy will freeze - in further iterations maybe more can happen
+        if (gm.correctCombination) //when the puzzle is solved the enemy will freeze - in further iterations maybe more can happen - the full correct musicbox song will play
         {
             enemy.canMove = false;
             boxHealed = true; 
