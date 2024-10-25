@@ -808,11 +808,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8f402a23a21bde44291581801eef49f2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.678
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -926,7 +926,7 @@ MonoBehaviour:
   floorCld: {fileID: 1393179998}
   enemyParent: {fileID: 0}
   enemyPrefab: {fileID: 5304637327970205387, guid: f04752c8dee87bc4ebb0c06f7b8026cd, type: 3}
-  enemyNum: 3
+  enemyNum: 1
   enemyList: []
   enemySpeed: 2
   enemyMaxSpeed: 5
@@ -934,6 +934,7 @@ MonoBehaviour:
   instrumentIsPlaying: 0
   timer: 2
   player: {fileID: 1490930237}
+  correctCombination: 0
 --- !u!4 &1568676076
 Transform:
   m_ObjectHideFlags: 0

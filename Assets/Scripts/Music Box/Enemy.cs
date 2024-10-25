@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     Rigidbody rb;
     NavMeshAgent navA;
     public bool canMove;
+    public MusicBoxManager mbManager; 
     float speed;
     float attackRange;
     float maxSpeed;
@@ -41,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     void MoveTowardPlayer()
     {
-        if (canMove)
+        if (canMove && !mbManager.boxHealed) //if the music box is also not healed yet (the player hasn't finished the puzzle)
         {
             navA.isStopped = false;
             Vector3 destination = GameManager.instance.player.transform.position;
