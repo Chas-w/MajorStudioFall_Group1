@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7167970156194267321}
   - component: {fileID: 8239128692265150910}
   - component: {fileID: 1427915481699155720}
-  - component: {fileID: 138187302686549465}
   - component: {fileID: -456333274334112016}
+  - component: {fileID: 138187302686549465}
+  - component: {fileID: -4596767027102346614}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -135,19 +136,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &138187302686549465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304637327970205387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac830b80122720d46844825149bf0e77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canMove: 0
 --- !u!195 &-456333274334112016
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -170,3 +158,33 @@ NavMeshAgent:
   m_BaseOffset: 0.45
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &138187302686549465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304637327970205387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac830b80122720d46844825149bf0e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMove: 0
+  mbManager: {fileID: -4596767027102346614}
+--- !u!114 &-4596767027102346614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304637327970205387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7422d681ba2de645b5dd8e55a0f5654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManagerObject: {fileID: 0}
+  gm: {fileID: 0}
+  enemy: {fileID: 138187302686549465}
+  boxHealed: 0

@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     [Header("Player Settings")]
     public GameObject player;
 
+    [Header("Puzzle Status")]
+    public bool correctCombination; 
+
     private void Awake()
     {
         instance = this;
