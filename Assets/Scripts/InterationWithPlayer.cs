@@ -13,6 +13,7 @@ public class InterationWithPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         btRectTrans = interactionBt.GetComponent<RectTransform>();
     }
 
@@ -52,7 +53,7 @@ public class InterationWithPlayer : MonoBehaviour
     {
         if (interactable && Input.GetKey(KeyCode.F))
         {
-
+            GameManager.instance.finalPuzzle.SetActive(true);
         }
     }
 }

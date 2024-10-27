@@ -24,9 +24,10 @@ public class InstrumentPlayer: MonoBehaviour
 
     [Header("Instrument Audio Data")]
     [SerializeField] AudioSource instrument;
-    [SerializeField] AudioClip[] instrumentNotes;
+    public AudioClip[] instrumentNotes;
     [SerializeField] KeyCode[] instrumentInput;
-    [SerializeField] KeyCode[] instrumentInputAlt; 
+    [SerializeField] KeyCode[] instrumentInputAlt;
+    public int pitch;
 
   
     float pluckTimerMax = .05f; 
@@ -80,9 +81,9 @@ public class InstrumentPlayer: MonoBehaviour
                 {
                     for (int i = 0; i < instrumentInput.Length; i++)
                     {
-                        if (instrumentInput[i] == vKey || instrumentInputAlt[i] == vKey) { index = i; break; }
+                        if (instrumentInput[i] == vKey || instrumentInputAlt[i] == vKey) { index = i; pitch = index + 1; break; }
                     }
-
+                    
                     pluck = true;
                     tempo = tempoMax;
 
@@ -91,11 +92,13 @@ public class InstrumentPlayer: MonoBehaviour
                     upDownCheck++;
                     CheckUpDown();
 
-
                     instrument.PlayOneShot(instrumentNotes[index]);
                     SaveNotes();
 
                     
+                } else
+                {
+                    pitch = 0;
                 }
                
             }

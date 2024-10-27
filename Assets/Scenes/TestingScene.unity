@@ -369,32 +369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66af3b535568e94c836b63e802eb3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instrument: {fileID: 1781724289}
   audioSource: {fileID: 434217534}
   windowsRect: {fileID: 469859297}
-  gridSizePerPage: {x: 9, y: 4}
-  nodeCellSize: 125
-  musicSpeed: 50
-  nodes:
-  - isFilled: 1
-    pitch: 1
-    image: {fileID: 0}
-    audioClip: {fileID: 0}
-  - isFilled: 1
-    pitch: 2
-    image: {fileID: 0}
-    audioClip: {fileID: 0}
-  - isFilled: 1
-    pitch: 9
-    image: {fileID: 0}
-    audioClip: {fileID: 0}
-  - isFilled: 0
-    pitch: 6
-    image: {fileID: 0}
-    audioClip: {fileID: 0}
-  - isFilled: 1
-    pitch: 4
-    image: {fileID: 0}
-    audioClip: {fileID: 0}
 --- !u!82 &434217534
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1078,7 +1055,7 @@ RectTransform:
   m_Father: {fileID: 1541731175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1659,7 +1636,7 @@ RectTransform:
   m_Father: {fileID: 1574299736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2424,6 +2401,31 @@ MonoBehaviour:
   instrumentIsPlaying: 0
   timer: 2
   player: {fileID: 1490930237}
+  finalPuzzle: {fileID: 1925192170}
+  playSpeed: 30
+  gridSizePerPage: {x: 9, y: 4}
+  nodeCellSize: 125
+  nodes:
+  - isFilled: 1
+    pitch: 7
+    image: {fileID: 0}
+    audioClip: {fileID: 0}
+  - isFilled: 1
+    pitch: 2
+    image: {fileID: 0}
+    audioClip: {fileID: 0}
+  - isFilled: 1
+    pitch: 9
+    image: {fileID: 0}
+    audioClip: {fileID: 0}
+  - isFilled: 0
+    pitch: 6
+    image: {fileID: 0}
+    audioClip: {fileID: 0}
+  - isFilled: 1
+    pitch: 4
+    image: {fileID: 0}
+    audioClip: {fileID: 0}
   correctCombination: 0
 --- !u!4 &1568676076
 Transform:
@@ -3065,6 +3067,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7d210ae570bf66b4fa15503efa18ecaf, type: 3}
   instrumentInput: 010100000201000003010000040100000501000006010000070100000801000009010000
   instrumentInputAlt: 310000003200000033000000340000003500000036000000370000003800000039000000
+  pitch: 0
 --- !u!1 &1813834392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3111,7 +3114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1925192171
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3200,10 +3203,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 705507995}
+  - {fileID: 1568676076}
   - {fileID: 1490930239}
   - {fileID: 1393179997}
   - {fileID: 214131748}
-  - {fileID: 1568676076}
   - {fileID: 1312385819}
   - {fileID: 1688286647}
   - {fileID: 294368395}

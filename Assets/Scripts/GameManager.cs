@@ -25,7 +25,13 @@ public class GameManager : MonoBehaviour
     public GameObject player;
 
     [Header("Puzzle Status")]
+    public GameObject finalPuzzle;
+    public float playSpeed;
+    public Vector2 gridSizePerPage;
+    public float nodeCellSize;
+    public List<Node> nodes = new List<Node>();
     public bool correctCombination; 
+
 
     private void Awake()
     {
@@ -36,7 +42,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         SpawnEnemy();
     }
 
