@@ -5,8 +5,8 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     [Header("Mouse Data")]
-    [SerializeField] float sensX; 
-    [SerializeField] float sensY;
+    float sensX; 
+    float sensY;
 
     [Header("External Data")]
     public PlayerMovement pMovement;
@@ -23,12 +23,15 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        sensX = GameManager.instance.horizontalSensitivity;
+        sensY = GameManager.instance.verticalSensitivity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!pMovement.haltMovement)
+
+        if (!pMovement.haltMovement && !GameManager.instance.freeze)
         {
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
             float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;

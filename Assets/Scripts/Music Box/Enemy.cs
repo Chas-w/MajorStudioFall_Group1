@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     public MusicBoxManager mbManager; 
     float speed;
     float attackRange;
-    float maxSpeed;
     
     private void Awake()
     {
@@ -28,7 +27,6 @@ public class Enemy : MonoBehaviour
     {
         speed = GameManager.instance.enemySpeed;
         attackRange = GameManager.instance.enemyAttackRange;
-        maxSpeed = GameManager.instance.enemyMaxSpeed;
         navA.speed = speed;
         navA.stoppingDistance = attackRange;
     }
@@ -42,7 +40,7 @@ public class Enemy : MonoBehaviour
 
     void MoveTowardPlayer()
     {
-        if (canMove && !mbManager.boxHealed) //if the music box is also not healed yet (the player hasn't finished the puzzle)
+        if (canMove && !mbManager.boxHealed && !GameManager.instance.freeze) //if the music box is also not healed yet (the player hasn't finished the puzzle)
         {
             navA.isStopped = false;
             Vector3 destination = GameManager.instance.player.transform.position;

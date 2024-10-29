@@ -51,7 +51,6 @@ public class PuzzleContent : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             puzzleStart = true;
-            FreezeOtherObject();
         }
         StartPuzzle();
 
@@ -68,6 +67,15 @@ public class PuzzleContent : MonoBehaviour
     }
 
     void CompletePuzzle()
+    {
+        GameManager.instance.finalPuzzle.SetActive(false);
+        GameManager.instance.FreezeOrUnfreeze();
+        GameManager.instance.puzzleSolved = true;
+        //do purify
+        Purify();
+    }
+
+    void Purify()
     {
         //waiting to be implemented
     }
@@ -98,10 +106,7 @@ public class PuzzleContent : MonoBehaviour
         }
     }
 
-    void FreezeOtherObject()
-    {
-        //wait to be implemented
-    }
+
 
     void CheckCorrectness()
     {
@@ -133,6 +138,7 @@ public class PuzzleContent : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, startY);
         musicSpeed = GameManager.instance.playSpeed;
         distanceMoved = 0;
+        GameManager.instance.FreezeOrUnfreeze();
     }
 
     IEnumerator ShowWrongEffect(int index)
@@ -167,6 +173,10 @@ public class PuzzleContent : MonoBehaviour
             nodeRect.anchoredPosition = new Vector2(((nodes[i].pitch - 1) * 2 + 1) * windowsRect.sizeDelta.x / gridSizePerPage.x / 2, -(i * 2 + 1) * windowsRect.sizeDelta.y / gridSizePerPage.y / 2);
             node.AddComponent<BoxCollider2D>();
             nodes[i].audioClip = instrument.instrumentNotes[nodes[i].pitch - 1];
+            if (nodes[i].isFilled)
+            {
+                image.color = Color.green;
+            }
         }
 
     }

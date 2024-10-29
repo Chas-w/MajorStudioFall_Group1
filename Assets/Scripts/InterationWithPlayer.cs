@@ -13,7 +13,7 @@ public class InterationWithPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        interactable = true;
         btRectTrans = interactionBt.GetComponent<RectTransform>();
     }
 
@@ -40,12 +40,10 @@ public class InterationWithPlayer : MonoBehaviour
         if (distance <= 3f)
         {
             interactionBt.gameObject.SetActive(true);
-            interactable = true;
         }
         else
         {
             interactionBt.gameObject.SetActive(false);
-            interactable = false;
         }
     }
 
@@ -54,6 +52,18 @@ public class InterationWithPlayer : MonoBehaviour
         if (interactable && Input.GetKey(KeyCode.F))
         {
             GameManager.instance.finalPuzzle.SetActive(true);
+            GameManager.instance.FreezeOrUnfreeze();
+            interactable = false;
+        }
+
+        if (!GameManager.instance.freeze && !GameManager.instance.puzzleSolved)
+        {
+            interactable = true;
+        } 
+
+        if (GameManager.instance.puzzleSolved)
+        {
+            Destroy(gameObject);
         }
     }
 }

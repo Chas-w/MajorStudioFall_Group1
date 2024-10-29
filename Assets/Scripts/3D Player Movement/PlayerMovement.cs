@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if (!haltMovement)
+        if (!haltMovement && !GameManager.instance.freeze)
         {
             mX = Input.GetAxis("Horizontal");
             mZ = Input.GetAxis("Vertical");

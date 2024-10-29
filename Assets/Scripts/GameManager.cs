@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Collider floorCld;
+    public bool freeze;
 
     [Header("Enemy Settings")]
     public GameObject enemyParent;
@@ -14,17 +15,21 @@ public class GameManager : MonoBehaviour
     public int enemyNum;
     public List<Enemy> enemyList;
     public float enemySpeed;
-    public float enemyMaxSpeed;
     public float enemyAttackRange;
+    public float searchTime;
+    float timer;
+    
 
     [Header("Instrument Status")]
     public bool instrumentIsPlaying;
-    public float timer = 2f;//this needs to be changed based on the audio length
 
     [Header("Player Settings")]
     public GameObject player;
+    public float horizontalSensitivity;
+    public float verticalSensitivity;
 
     [Header("Puzzle Status")]
+    public bool puzzleSolved = false;
     public GameObject finalPuzzle;
     public float playSpeed;
     public Vector2 gridSizePerPage;
@@ -42,7 +47,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemy();
+        freeze = false;
+        //SpawnEnemy();
     }
 
     // Update is called once per frame
@@ -84,6 +90,17 @@ public class GameManager : MonoBehaviour
             {
                 enemyList[i].canMove = true;
             }
+
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                timer = searchTime;
+                instrumentIsPlaying = false;
+            }
+
         } else
         {
             for (int i = 0; i < enemyNum; i++)
@@ -92,13 +109,20 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (timer > 0)
+
+    }
+
+    public void FreezeOrUnfreeze()
+    {
+        //freeze player
+        freeze = !freeze;
+        if (freeze)
         {
-            timer -= Time.deltaTime;
+            Cursor.lockState = CursorLockMode.None;
         } else
         {
-            timer = 2f;
-            instrumentIsPlaying = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
+
     }
 }
