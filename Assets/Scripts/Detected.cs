@@ -7,6 +7,7 @@ public class Detected : MonoBehaviour
 {
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip audioClip;
+    bool played; 
     // Start is called before the first frame update
     void Start()
     {
@@ -21,16 +22,24 @@ public class Detected : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Detector"))
+        if (other.CompareTag("Detector") && !played)
         {
             audioSource.PlayOneShot(audioClip);
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Detector"))
+        if (other.CompareTag("Detector") && !played)
         {
             audioSource.PlayOneShot(audioClip);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Detector"))
+        {
+            played = false;
         }
     }
 }

@@ -46,7 +46,7 @@ public class MarcoPolo : MonoBehaviour
         
         if (!gameManager.instrumentIsPlaying)
         {
-            detectorScale.x -= Time.deltaTime * detectorSpeed;
+            detectorScale.x -= Time.deltaTime * (detectorSpeed * 2);
             if (detectorScale.x <= 1)
             {
                 detectorScale = Vector3.zero;
