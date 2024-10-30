@@ -135,8 +135,7 @@ public class PuzzleContent : MonoBehaviour
     {
         index = 0;
         GameManager.instance.finalPuzzle.SetActive(false);
-        detected.enabled = true;
-
+        detected.enabled = true; 
         rectTransform.sizeDelta = new Vector2(0, nodes.Count * (windowsRect.sizeDelta.y / gridSizePerPage.y));
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, startY);
         musicSpeed = GameManager.instance.playSpeed;
