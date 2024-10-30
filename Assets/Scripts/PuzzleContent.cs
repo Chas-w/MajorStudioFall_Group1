@@ -56,7 +56,6 @@ public class PuzzleContent : MonoBehaviour
             puzzleStart = true;
         }
         StartPuzzle();
-
         StopPuzzle();
     }
 
@@ -64,7 +63,6 @@ public class PuzzleContent : MonoBehaviour
     {
         if (rectTransform.anchoredPosition.y >= endY)
         {
-            detected.enabled = true; 
             musicSpeed = 0f;
             CompletePuzzle();
         }
@@ -137,6 +135,8 @@ public class PuzzleContent : MonoBehaviour
     {
         index = 0;
         GameManager.instance.finalPuzzle.SetActive(false);
+        detected.enabled = true;
+
         rectTransform.sizeDelta = new Vector2(0, nodes.Count * (windowsRect.sizeDelta.y / gridSizePerPage.y));
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, startY);
         musicSpeed = GameManager.instance.playSpeed;
