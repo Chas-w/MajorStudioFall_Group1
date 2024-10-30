@@ -112,8 +112,6 @@ public class PuzzleContent : MonoBehaviour
     {
         if (instrument.pitch > 0)
         {
-            Debug.Log(instrument.pitch);
-            Debug.Log(nodes[index].pitch);
             if (instrument.pitch == nodes[index].pitch)
             {
                 audioSource.clip = nodes[index].audioClip;
