@@ -101,7 +101,7 @@ public class InstrumentPlayer: MonoBehaviour
                     pitch = 0;
                 }
                
-            }
+            } 
            
         }
         if (pluck)
@@ -116,7 +116,11 @@ public class InstrumentPlayer: MonoBehaviour
                 pluck = false;
                 pluckTimer = pluckTimerMax; 
             }
-        } 
+        }
+        else
+        {
+            pitch = 0;
+        }
     }
     void SaveNotes()
     {

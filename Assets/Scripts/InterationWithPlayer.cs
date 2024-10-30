@@ -49,7 +49,7 @@ public class InterationWithPlayer : MonoBehaviour
 
     void Interaction()
     {
-        if (interactable && Input.GetKey(KeyCode.F))
+        if (interactionBt.gameObject.activeSelf && Input.GetKey(KeyCode.F))
         {
             GameManager.instance.finalPuzzle.SetActive(true);
             GameManager.instance.FreezeOrUnfreeze();
