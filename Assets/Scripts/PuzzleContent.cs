@@ -8,6 +8,8 @@ public class PuzzleContent : MonoBehaviour
 {
     // Start is called before the first frame update
     public InstrumentPlayer instrument;
+    public GameObject piece;
+    public AudioSource detected; 
     public AudioSource audioSource;
     public RectTransform windowsRect;
     Vector2 gridSizePerPage;
@@ -47,6 +49,7 @@ public class PuzzleContent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //hit space to start
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -61,6 +64,7 @@ public class PuzzleContent : MonoBehaviour
     {
         if (rectTransform.anchoredPosition.y >= endY)
         {
+            detected.enabled = true; 
             musicSpeed = 0f;
             CompletePuzzle();
         }
@@ -85,6 +89,7 @@ public class PuzzleContent : MonoBehaviour
         
         if (puzzleStart)
         {
+            detected.enabled = false; 
             rectTransform.anchoredPosition += new Vector2(0, musicSpeed * Time.fixedDeltaTime);
             //play audio if it is filled
             distanceMoved += musicSpeed * Time.fixedDeltaTime;
