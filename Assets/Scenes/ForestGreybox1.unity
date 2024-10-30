@@ -949,6 +949,7 @@ MonoBehaviour:
   enemySpeed: 10
   enemyAttackRange: 3
   searchTime: 5
+  timer: 0
   instrumentIsPlaying: 0
   player: {fileID: 1204987923}
   horizontalSensitivity: 300
@@ -2584,7 +2585,7 @@ GameObject:
   - component: {fileID: 448853568}
   - component: {fileID: 448853567}
   - component: {fileID: 448853566}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5086,7 +5087,7 @@ GameObject:
   - component: {fileID: 792389697}
   - component: {fileID: 792389696}
   - component: {fileID: 792389695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6713,7 +6714,7 @@ GameObject:
   - component: {fileID: 1206797365}
   - component: {fileID: 1206797364}
   - component: {fileID: 1206797363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6924,7 +6925,7 @@ GameObject:
   - component: {fileID: 1229040091}
   - component: {fileID: 1229040090}
   - component: {fileID: 1229040089}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9157,7 +9158,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 127
+    m_Bits: 95
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -9256,6 +9257,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1427915481699155720, guid: f04752c8dee87bc4ebb0c06f7b8026cd, type: 3}
+      propertyPath: m_Mass
+      value: 0.0000001
+      objectReference: {fileID: 0}
     - target: {fileID: 3587684220509638584, guid: f04752c8dee87bc4ebb0c06f7b8026cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 233.12398
@@ -10048,7 +10053,7 @@ GameObject:
   - component: {fileID: 1974867922}
   - component: {fileID: 1974867921}
   - component: {fileID: 1974867920}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

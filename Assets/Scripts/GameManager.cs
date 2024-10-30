@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public float enemySpeed;
     public float enemyAttackRange;
     public float searchTime;
-    float timer;
+    public float timer;
     
 
     [Header("Instrument Status")]
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                timer = searchTime;
+                timer += searchTime;
                 instrumentIsPlaying = false;
             }
 

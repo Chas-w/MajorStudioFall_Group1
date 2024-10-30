@@ -81,7 +81,7 @@ public class InstrumentPlayer: MonoBehaviour
                 {
                     for (int i = 0; i < instrumentInput.Length; i++)
                     {
-                        if (instrumentInput[i] == vKey || instrumentInputAlt[i] == vKey) { index = i; pitch = index + 1; break; }
+                        if (instrumentInput[i] == vKey || instrumentInputAlt[i] == vKey) { index = i; pitch = index + 1; GameManager.instance.timer += GameManager.instance.searchTime; break; }
                     }
                     
                     pluck = true;
