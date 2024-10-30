@@ -14,6 +14,11 @@ public class MarcoPolo : MonoBehaviour
     [SerializeField] float detectorMax;
     [SerializeField] float detectorMin;
 
+    [Header("Lighting")]
+    public Light point;
+    [SerializeField] float intensityMax;
+    [SerializeField] float lightIntensity; 
+
     [Header("Detecting States")]
     [SerializeField] bool gotBig;
     [SerializeField] bool gotSmall;
@@ -27,7 +32,8 @@ public class MarcoPolo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SonarDetection(); 
+        SonarDetection();
+        point.intensity = lightIntensity; 
     }
 
 
@@ -39,13 +45,27 @@ public class MarcoPolo : MonoBehaviour
 
         if (gameManager.instrumentIsPlaying)
         {
-
+            if (lightIntensity < intensityMax)
+            {
+                lightIntensity += Time.deltaTime * 2f; 
+            } if (lightIntensity >= intensityMax)
+            {
+                lightIntensity = intensityMax;
+            }
             detectorScale.x += Time.deltaTime * detectorSpeed;
             detector.localScale = detectorScale;
         } 
         
         if (!gameManager.instrumentIsPlaying)
         {
+            if (lightIntensity > 0f)
+            {
+                lightIntensity -= Time.deltaTime * 4f;
+            }
+            if (lightIntensity <= 0f)
+            {
+                lightIntensity = 0f;
+            }
             detectorScale.x -= Time.deltaTime * (detectorSpeed * 2);
             if (detectorScale.x <= 1)
             {
