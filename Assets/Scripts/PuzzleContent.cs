@@ -30,6 +30,7 @@ public class PuzzleContent : MonoBehaviour
     }
     void Start()
     {
+        Debug.Log("222");
         //set variables based on GameManager
         gridSizePerPage = GameManager.instance.gridSizePerPage;
         nodeCellSize = GameManager.instance.nodeCellSize;
@@ -134,13 +135,12 @@ public class PuzzleContent : MonoBehaviour
     void SetToDefault()
     {
         index = 0;
-        GameManager.instance.finalPuzzle.SetActive(false);
         detected.enabled = true; 
         rectTransform.sizeDelta = new Vector2(0, nodes.Count * (windowsRect.sizeDelta.y / gridSizePerPage.y));
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, startY);
         musicSpeed = GameManager.instance.playSpeed;
         distanceMoved = 0;
-        GameManager.instance.FreezeOrUnfreeze();
+ 
     }
 
     IEnumerator ShowWrongEffect(int index)
@@ -157,6 +157,8 @@ public class PuzzleContent : MonoBehaviour
             }
             yield return new WaitForSeconds(0.3f);
         }
+        GameManager.instance.FreezeOrUnfreeze();
+        GameManager.instance.finalPuzzle.SetActive(false);
         SetToDefault();
     }
 
