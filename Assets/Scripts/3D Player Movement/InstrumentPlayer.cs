@@ -46,7 +46,7 @@ public class InstrumentPlayer: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pluckTimer = pluckTimerMax; 
+        pluckTimer = pluckTimerMax;
     }
 
     // Update is called once per frame

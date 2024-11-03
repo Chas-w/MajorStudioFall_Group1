@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InterationWithPlayer : MonoBehaviour
+public class InterationWithToy : MonoBehaviour
 {
-    public GameObject player;
     public float distance;
     public bool interactable;
+    public bool pickUp;
     public Button interactionBt;
     RectTransform btRectTrans;
     // Start is called before the first frame update
@@ -15,6 +15,7 @@ public class InterationWithPlayer : MonoBehaviour
     {
         interactable = true;
         btRectTrans = interactionBt.GetComponent<RectTransform>();
+        pickUp = false;
     }
 
     // Update is called once per frame
@@ -22,18 +23,19 @@ public class InterationWithPlayer : MonoBehaviour
     {
         CheckCloseToPlayer();
         Interaction();
+        interactionBt.transform.rotation = Quaternion.identity;
     }
 
     void CheckCloseToPlayer()
     {
-        distance = (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(player.transform.position.x, 0, player.transform.position.z)) * 100f) / 100f;
+        distance = (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(GameManager.instance.player.transform.position.x, 0, GameManager.instance.player.transform.position.z)) * 100f) / 100f;
         InterationButtonVisibility();
-        
+
     }
 
     void InterationButtonVisibility()
     {
-        Vector3 direction = (transform.position - player.transform.position).normalized;
+        Vector3 direction = (transform.position - GameManager.instance.player.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         btRectTrans.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
 
@@ -51,20 +53,15 @@ public class InterationWithPlayer : MonoBehaviour
     {
         if (interactionBt.gameObject.activeSelf && Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("111");
-            GameManager.instance.finalPuzzle.SetActive(true);
-            GameManager.instance.FreezeOrUnfreeze();
-            interactable = false;
-        }
-
-        if (!GameManager.instance.freeze && !GameManager.instance.puzzleSolved)
-        {
-            interactable = true;
-        } 
-
-        if (GameManager.instance.puzzleSolved)
-        {
-            Destroy(gameObject);
+            if (pickUp)
+            {
+                transform.SetParent(null);
+                pickUp = false;
+            } else
+            {
+                transform.parent = GameManager.instance.player.transform.GetChild(0);
+                pickUp = true;
+            }
         }
     }
 }

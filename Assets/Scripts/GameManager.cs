@@ -12,13 +12,14 @@ public class GameManager : MonoBehaviour
     [Header("Enemy Settings")]
     public GameObject enemyParent;
     public GameObject enemyPrefab;
-    public int enemyNum;
-    public List<Enemy> enemyList;
+    public List<EnemyInfo> enemyList;
     public float enemySpeed;
     public float enemyAttackRange;
     public float searchTime;
     public float timer;
-    
+    public float playbackInterval;
+    public float killableRange;
+
 
     [Header("Instrument Status")]
     public bool instrumentIsPlaying;
@@ -48,27 +49,31 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         freeze = false;
-        //SpawnEnemy();
+        SpawnEnemy();
     }
 
     // Update is called once per frame
     void Update()
     {
-        EnemyMovement();
+        //EnemyMovement();
     }
 
-    
+  
     void SpawnEnemy()
     {
-        GameObject enemyParent = new GameObject("EnemyParent");
-        for (int i = 0; i < enemyNum; i++)
+        for (int i = 0; i < enemyList.Count; i++)
         {
-            GameObject enemy = Instantiate(enemyPrefab, enemyParent.transform);
-            enemyList.Add(enemy.GetComponent<Enemy>());
-            enemy.transform.position = new Vector3(Random.Range(-floorCld.bounds.extents.x, floorCld.bounds.extents.x), 0, Random.Range(-floorCld.bounds.extents.z, floorCld.bounds.extents.z));
+            GameObject musicBox = enemyParent.transform.GetChild(i).gameObject;
+            Enemy enemy = musicBox.GetComponent<Enemy>();
+            enemy.toy = enemyList[i].toy;
+            enemy.spawnCld = enemyList[i].spawnCld;
+            enemy.pitch = enemyList[i].pitch;
+            enemy.Spawn();
         }
     }
-    
+
+
+
 
     /*
     void InitializeEnemyList()
@@ -86,9 +91,9 @@ public class GameManager : MonoBehaviour
     {
         if (instrumentIsPlaying)
         {
-            for (int i = 0; i < enemyNum; i++)
+            for (int i = 0; i < enemyList.Count; i++)
             {
-                enemyList[i].canMove = true;
+                //enemyList[i].canMove = true;
             }
 
             if (timer > 0)
@@ -103,9 +108,9 @@ public class GameManager : MonoBehaviour
 
         } else
         {
-            for (int i = 0; i < enemyNum; i++)
+            for (int i = 0; i < enemyList.Count; i++)
             {
-                enemyList[i].canMove = false;
+                //enemyList[i].canMove = false;
             }
         }
 
