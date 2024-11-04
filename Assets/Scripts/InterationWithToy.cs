@@ -10,10 +10,12 @@ public class InterationWithToy : MonoBehaviour
     public bool pickUp;
     public Button interactionBt;
     RectTransform btRectTrans;
+
+    private Transform closestToy;
     // Start is called before the first frame update
     void Start()
     {
-        interactable = true;
+        interactable = false;
         btRectTrans = interactionBt.GetComponent<RectTransform>();
         pickUp = false;
     }
@@ -26,9 +28,27 @@ public class InterationWithToy : MonoBehaviour
         interactionBt.transform.rotation = Quaternion.identity;
     }
 
+    Transform GetClosestChild()
+    {
+        Transform closestChild = null;
+        float closestDistanceSqr = Mathf.Infinity;
+
+        foreach (GameObject child in GameManager.instance.toyList)
+        {
+            float distanceSqr = (child.transform.position - GameManager.instance.player.transform.position).sqrMagnitude;
+            if (distanceSqr < closestDistanceSqr)
+            {
+                closestDistanceSqr = distanceSqr;
+                closestChild = child.transform;
+            }
+        }
+
+        return closestChild;
+    }
+
     void CheckCloseToPlayer()
     {
-        distance = (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(GameManager.instance.player.transform.position.x, 0, GameManager.instance.player.transform.position.z)) * 100f) / 100f;
+        closestToy = GetClosestChild();
         InterationButtonVisibility();
 
     }
@@ -39,14 +59,17 @@ public class InterationWithToy : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         btRectTrans.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
 
-        if (distance <= 3f)
+        distance = Vector3.Distance(closestToy.transform.position, GameManager.instance.player.transform.position);
+        if (distance <= 5f)
         {
-            interactionBt.gameObject.SetActive(true);
+            interactable = true;
         }
         else
         {
-            interactionBt.gameObject.SetActive(false);
+            interactable = false;
         }
+
+        interactionBt.gameObject.SetActive(interactable);
     }
 
     void Interaction()
@@ -55,11 +78,11 @@ public class InterationWithToy : MonoBehaviour
         {
             if (pickUp)
             {
-                transform.SetParent(null);
+                closestToy.transform.SetParent(null);
                 pickUp = false;
             } else
             {
-                transform.parent = GameManager.instance.player.transform.GetChild(0);
+                closestToy.transform.parent = GameManager.instance.player.transform.GetChild(0);
                 pickUp = true;
             }
         }

@@ -7,14 +7,16 @@ using UnityEditor.AI;
 using UnityEngine.AI;
 using System;
 using System.Reflection;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
     Collider cld;
     //public GameObject spawnArea;
-    [HideInInspector]public Collider spawnCld;
-    [HideInInspector]public GameObject toy;
+    [HideInInspector]public Transform spawnPos;
+    public GameObject toy;
     [HideInInspector] public int pitch;
+    [HideInInspector] public AudioClip clip;
     Rigidbody rb;
     NavMeshAgent navA;
     public bool canMove;
@@ -22,9 +24,6 @@ public class Enemy : MonoBehaviour
     float speed;
     float attackRange;
     AudioSource audioSource;
-    InstrumentPlayer instrument;
-
-    float timer;
     
     private void Awake()
     {
@@ -41,7 +40,7 @@ public class Enemy : MonoBehaviour
         attackRange = GameManager.instance.enemyAttackRange;
         navA.speed = speed;
         navA.stoppingDistance = attackRange;
-        instrument = GameObject.Find("Instrument").GetComponent<InstrumentPlayer>();
+        StartCoroutine(PlayNode());
     }
 
     // Update is called once per frame
@@ -50,7 +49,6 @@ public class Enemy : MonoBehaviour
         //CheckAttackRange();
         //MoveTowardPlayer();
         MoveTowardToy();
-        PlayNode();
         CheckPlayerNode();
     }
 
@@ -62,9 +60,9 @@ public class Enemy : MonoBehaviour
 
         if (distance <= GameManager.instance.killableRange)
         {
-            if (instrument.pitch > 0)
+            if (GameManager.instance.instrument.pitch > 0)
             {
-                if (instrument.pitch == pitch)
+                if (GameManager.instance.instrument.pitch == pitch)
                 {
                     Spawn();
                 }
@@ -72,53 +70,49 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void PlayNode()
+    IEnumerator PlayNode()
     {
-        if (timer <= 0)
+        while (true)
         {
-            Debug.Log("111");
             audioSource.Play();
-            timer = GameManager.instance.playbackInterval;
-        } else
-        {
-            timer -= Time.deltaTime;
+            yield return new WaitForSeconds(GameManager.instance.playbackInterval);
+            audioSource.Stop();
         }
     }
 
     public void Spawn()
     {
-        Bounds bounds = spawnCld.bounds;
-        Vector3 pos = GetRandomTopEdgePoint(bounds);
-        pos += new Vector3(0, transform.localScale.y / 2, 0);
+        Vector3 pos = GetRandomPointInCircle(spawnPos.position, GameManager.instance.spawnRange);
+        //pos += new Vector3(0, transform.localScale.y / 2, 0);
+
+        /*
+        float maxDistance = 10.0f;  // Set based on the expected distance from the agent to the NavMesh
+
+        NavMeshHit hit;
+
+        if (NavMesh.SamplePosition(pos, out hit, maxDistance, NavMesh.AllAreas))
+        {
+            pos = hit.position;  // Adjust spawn position to the nearest point on the NavMesh
+        }
+        */
+        navA.Warp(pos);
         transform.position = pos;
-        audioSource.clip = instrument.instrumentNotes[pitch - 1];
-        timer = GameManager.instance.playbackInterval;
+        audioSource.clip = clip;
     }
 
-
-    Vector3 GetRandomTopEdgePoint(Bounds bounds)
+    Vector3 GetRandomPointInCircle(Vector3 pos, float radius)
     {
-        // Get the max Y to define the top face
-        float y = bounds.max.y;
-        Vector3 min = bounds.min;
-        Vector3 max = bounds.max;
+        // Generate a random angle in radians
+        float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2);
 
-        // Randomly select one of the 4 edges on the top face
-        int edge = UnityEngine.Random.Range(0, 4);
+        // Generate a random radius, scaled to the square root for uniform distribution
+        float distance = Mathf.Sqrt(UnityEngine.Random.Range(0f, 1f)) * radius;
 
-        switch (edge)
-        {
-            case 0: // Top edge along X, at min Z
-                return new Vector3(UnityEngine.Random.Range(min.x, max.x), y, min.z);
-            case 1: // Top edge along X, at max Z
-                return new Vector3(UnityEngine.Random.Range(min.x, max.x), y, max.z);
-            case 2: // Left edge along Z, at min X
-                return new Vector3(min.x, y, UnityEngine.Random.Range(min.z, max.z));
-            case 3: // Right edge along Z, at max X
-                return new Vector3(max.x, y, UnityEngine.Random.Range(min.z, max.z));
-            default:
-                return bounds.center; // Fallback to center (shouldn't happen)
-        }
+        // Calculate the random point using polar coordinates
+        float x = pos.x + Mathf.Cos(angle) * distance;
+        float z = pos.z + Mathf.Sin(angle) * distance;
+
+        return new Vector3(x, pos.y, z);
     }
 
     void MoveTowardPlayer()
@@ -176,7 +170,7 @@ public class Enemy : MonoBehaviour
 [Serializable]
 public class EnemyInfo
 {
-    public Collider spawnCld;
+    public Transform spawnPos;
     public GameObject toy;
     public int pitch;
 }

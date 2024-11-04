@@ -3150,7 +3150,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.7
+  m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &5565758408020652831
@@ -3165,9 +3165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac830b80122720d46844825149bf0e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCld: {fileID: 0}
+  spawnPos: {fileID: 0}
   toy: {fileID: 0}
   pitch: 0
+  clip: {fileID: 0}
   canMove: 0
   mbManager: {fileID: 2409956198439317739}
 --- !u!114 &2409956198439317739
@@ -3197,7 +3198,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3207,7 +3208,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 300
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -3242,7 +3243,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

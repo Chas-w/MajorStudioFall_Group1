@@ -19,15 +19,19 @@ public class GameManager : MonoBehaviour
     public float timer;
     public float playbackInterval;
     public float killableRange;
+    public float spawnRange;
 
 
     [Header("Instrument Status")]
     public bool instrumentIsPlaying;
+    public InstrumentPlayer instrument;
 
     [Header("Player Settings")]
     public GameObject player;
     public float horizontalSensitivity;
     public float verticalSensitivity;
+    public List<GameObject> toyList;
+    //public GameObject currentHoldingToy;
 
     [Header("Puzzle Status")]
     public bool puzzleSolved = false;
@@ -63,11 +67,12 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < enemyList.Count; i++)
         {
-            GameObject musicBox = enemyParent.transform.GetChild(i).gameObject;
+            GameObject musicBox = Instantiate(enemyPrefab, enemyParent.transform);
             Enemy enemy = musicBox.GetComponent<Enemy>();
             enemy.toy = enemyList[i].toy;
-            enemy.spawnCld = enemyList[i].spawnCld;
+            enemy.spawnPos = enemyList[i].spawnPos;
             enemy.pitch = enemyList[i].pitch;
+            enemy.clip = instrument.instrumentNotes[enemyList[i].pitch - 1];
             enemy.Spawn();
         }
     }
