@@ -150,20 +150,21 @@ public class Enemy : MonoBehaviour
         {
             navA.isStopped = true;
         }
+        CheckAttackRange();
     }
 
     void CheckAttackRange()
     {
-        /*
-        Vector3 playerHorPos = new Vector3(GameManager.instance.player.transform.position.x, 0, GameManager.instance.player.transform.position.z);
+        Vector3 toyHosPos = new Vector3(toy.transform.position.x, 0, toy.transform.position.z);
         Vector3 enemyHorPos = new Vector3(transform.position.x, 0, transform.position.z);
-        float distance = Vector3.Distance(playerHorPos, enemyHorPos);
+        float distance = Vector3.Distance(toyHosPos, enemyHorPos);
         
         if (distance <= attackRange)
         {
-            canMove = false;
+            GameManager.instance.toyList.Remove(toy);
+            Destroy(toy);
+            Destroy(gameObject);
         }
-        */
     }
 }
 

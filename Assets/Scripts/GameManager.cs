@@ -1,13 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Collider floorCld;
     public bool freeze;
+
+    [Header("Game Status")]
+    public float nightDuration;
+    public GameObject finalScreen;
+    public TextMeshProUGUI nightTimerText;
+    public TextMeshProUGUI toyRemainText;
+    public TextMeshProUGUI resultText;
+    private float nightTimer;
+
 
     [Header("Enemy Settings")]
     public GameObject enemyParent;
@@ -53,15 +64,63 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         freeze = false;
+        nightTimer = nightDuration;
         SpawnEnemy();
     }
 
     // Update is called once per frame
     void Update()
     {
+        NightTimeCountDown();
+        CheckToyCount();
         //EnemyMovement();
     }
 
+    void CheckToyCount()
+    {
+        toyRemainText.text = "Toy Remain: " + toyList.Count.ToString();
+        if (toyList.Count == 0)
+        {
+            GameEnd();
+        }
+    }
+
+    void NightTimeCountDown()
+    {
+        if (nightTimer > 0)
+        {
+            nightTimer -= Time.deltaTime;
+            nightTimerText.text = "Night Time Remain: " + Mathf.Round(nightTimer).ToString() + "s";
+        } else
+        {
+            GameEnd();
+        }
+    }
+
+    void GameEnd()
+    {
+        freeze = true;
+        nightTimerText.gameObject.SetActive(false);
+        toyRemainText.gameObject.SetActive(false);
+        finalScreen.GetComponent<CanvasGroup>().alpha += 0.01f;
+        switch (toyList.Count)
+        {
+            case 0:
+                resultText.text = "All toys are destroyed"; //waiting to be modified
+                break;
+            case 1:
+                resultText.text = "1 toy left";//waiting to be modified
+                break;
+            case 2:
+                resultText.text = "2 toy left";//waiting to be modified
+                break;
+            case 3:
+                resultText.text = "3 toy left";//waiting to be modified
+                break;
+        }
+            
+
+    }
   
     void SpawnEnemy()
     {
