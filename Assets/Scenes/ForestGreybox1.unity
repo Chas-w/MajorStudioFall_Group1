@@ -6867,6 +6867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 186872519}
   dialogue: {fileID: 986138840}
+  enemyParent: {fileID: 720934933}
   crow: {fileID: 71407512}
   dolls: {fileID: 331123987}
   teddy: {fileID: 1326915273}

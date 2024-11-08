@@ -7,6 +7,7 @@ public class CinemaManager : MonoBehaviour
     //Logistic Objects
     [SerializeField] GameObject gameManager;
     [SerializeField] GameObject dialogue;
+    [SerializeField] GameObject enemyParent;
 
 
     //Toys
@@ -27,15 +28,16 @@ public class CinemaManager : MonoBehaviour
     void Start()
     {
         gameManager.SetActive(false);
-
+        enemyParent.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(dialogue.GetComponent<DialogueManager>().contentIndex == 11 && Input.GetKey(KeyCode.Space))
+        if(!isStart && dialogue.GetComponent<DialogueManager>().contentIndex == 11 && Input.GetKey(KeyCode.Space))
         {
             StartGame();
+            isStart = true;
         }
     }
 
@@ -54,6 +56,7 @@ public class CinemaManager : MonoBehaviour
 
 
         gameManager.SetActive(true);
+        enemyParent.SetActive(true);
     }
 
 }
