@@ -6,6 +6,7 @@ public class CinemaManager : MonoBehaviour
 {
     //Logistic Objects
     [SerializeField] GameObject gameManager;
+    [SerializeField] GameObject enemyParent;
     [SerializeField] GameObject dialogue;
 
 
@@ -20,13 +21,13 @@ public class CinemaManager : MonoBehaviour
     [SerializeField] Transform dollFinal;
 
     //private variables
-    bool isStart;
 
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager.SetActive(false);
+        enemyParent.SetActive(false);
 
     }
 
@@ -54,6 +55,7 @@ public class CinemaManager : MonoBehaviour
 
 
         gameManager.SetActive(true);
+        enemyParent.SetActive(true);
     }
 
 }
