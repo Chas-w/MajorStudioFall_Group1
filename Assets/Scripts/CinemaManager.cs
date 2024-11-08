@@ -6,6 +6,7 @@ public class CinemaManager : MonoBehaviour
 {
     //Logistic Objects
     [SerializeField] GameObject gameManager;
+    [SerializeField] GameObject enemyParent;
     [SerializeField] GameObject dialogue;
     [SerializeField] GameObject enemyParent;
     [SerializeField] GameObject player;
@@ -28,7 +29,6 @@ public class CinemaManager : MonoBehaviour
     Transform playerEnd;
 
     //private variables
-    bool isStart;
 
 
     // Start is called before the first frame update
@@ -70,6 +70,7 @@ public class CinemaManager : MonoBehaviour
 
         gameManager.SetActive(true);
         enemyParent.SetActive(true);
+<<<<<<< HEAD
         gameManager.GetComponent<GameManager>().freeze = false;
     }
 
@@ -97,6 +98,8 @@ public class CinemaManager : MonoBehaviour
         player.transform.rotation = playerEnd.rotation;
 
         gameManager.GetComponent<GameManager>().freeze = true;
+=======
+>>>>>>> origin/Cinematics
     }
 
 }
