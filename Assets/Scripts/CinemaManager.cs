@@ -8,7 +8,6 @@ public class CinemaManager : MonoBehaviour
     [SerializeField] GameObject gameManager;
     [SerializeField] GameObject enemyParent;
     [SerializeField] GameObject dialogue;
-    [SerializeField] GameObject enemyParent;
     [SerializeField] GameObject player;
 
 
@@ -21,6 +20,7 @@ public class CinemaManager : MonoBehaviour
     [SerializeField] Transform crowFinal;
     [SerializeField] Transform teddyFinal;
     [SerializeField] Transform dollFinal;
+    [SerializeField] bool isStart; 
 
     //End Game Position
     Transform crowEnd;
@@ -70,7 +70,7 @@ public class CinemaManager : MonoBehaviour
 
         gameManager.SetActive(true);
         enemyParent.SetActive(true);
-<<<<<<< HEAD
+
         gameManager.GetComponent<GameManager>().freeze = false;
     }
 
@@ -98,8 +98,7 @@ public class CinemaManager : MonoBehaviour
         player.transform.rotation = playerEnd.rotation;
 
         gameManager.GetComponent<GameManager>().freeze = true;
-=======
->>>>>>> origin/Cinematics
+
     }
 
 }
