@@ -23,19 +23,20 @@ public class Enemy : MonoBehaviour
     public MusicBoxManager mbManager; 
     float speed;
     float attackRange;
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
     
     private void Awake()
     {
         cld = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         navA = GetComponent<NavMeshAgent>();
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
         //spawnCld = spawnArea.GetComponent<Collider>();
     }
     // Start is called before the first frame update
     void Start()
     {
+        audioSource.volume = 50;
         speed = GameManager.instance.enemySpeed;
         attackRange = GameManager.instance.enemyAttackRange;
         navA.speed = speed;
@@ -74,9 +75,11 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            audioSource.Play();
+            Debug.Log("111");
+            //audioSource.Play();
+            audioSource.PlayOneShot(clip);
             yield return new WaitForSeconds(GameManager.instance.playbackInterval);
-            audioSource.Stop();
+            //audioSource.Stop();
         }
     }
 

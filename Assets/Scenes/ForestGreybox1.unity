@@ -941,7 +941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorCld: {fileID: 1792946553}
   freeze: 0
-  nightDuration: 60
+  nightDuration: 120
   finalScreen: {fileID: 1964863722}
   nightTimerText: {fileID: 318625236}
   toyRemainText: {fileID: 1286427428}
@@ -958,13 +958,13 @@ MonoBehaviour:
   - spawnPos: {fileID: 2046443592}
     toy: {fileID: 1326915273}
     pitch: 3
-  enemySpeed: 10
+  enemySpeed: 1
   enemyAttackRange: 3
   searchTime: 5
   timer: 0
-  playbackInterval: 3
-  killableRange: 30
-  spawnRange: 100
+  playbackInterval: 1
+  killableRange: 50
+  spawnRange: 0
   instrumentIsPlaying: 0
   instrument: {fileID: 429455366}
   player: {fileID: 1204987923}
@@ -3377,7 +3377,7 @@ Transform:
   m_GameObject: {fileID: 498553209}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 202.4, y: 58.7, z: 465.4}
+  m_LocalPosition: {x: 100.8, y: 36.1, z: 465.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6874,6 +6874,9 @@ MonoBehaviour:
   crowFinal: {fileID: 2089324335}
   teddyFinal: {fileID: 282948693}
   dollFinal: {fileID: 1152767462}
+  crowEnd: {fileID: 0}
+  teddyEnd: {fileID: 0}
+  dollEnd: {fileID: 0}
 --- !u!1 &1081811750
 GameObject:
   m_ObjectHideFlags: 0
@@ -8154,7 +8157,7 @@ Transform:
   m_GameObject: {fileID: 1266725641}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 776, y: 31, z: 441}
+  m_LocalPosition: {x: 866.6, y: 26.18, z: 441}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12399,7 +12402,7 @@ Transform:
   m_GameObject: {fileID: 2046443591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 484, y: 52.26, z: 292}
+  m_LocalPosition: {x: 484, y: 2.1, z: 142.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

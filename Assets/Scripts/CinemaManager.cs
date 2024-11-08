@@ -8,6 +8,7 @@ public class CinemaManager : MonoBehaviour
     [SerializeField] GameObject gameManager;
     [SerializeField] GameObject dialogue;
     [SerializeField] GameObject enemyParent;
+    [SerializeField] GameObject player;
 
 
     //Toys
@@ -20,6 +21,12 @@ public class CinemaManager : MonoBehaviour
     [SerializeField] Transform teddyFinal;
     [SerializeField] Transform dollFinal;
 
+    //End Game Position
+    Transform crowEnd;
+    Transform teddyEnd;
+    Transform dollEnd;
+    Transform playerEnd;
+
     //private variables
     bool isStart;
 
@@ -29,6 +36,12 @@ public class CinemaManager : MonoBehaviour
     {
         gameManager.SetActive(false);
         enemyParent.SetActive(false);
+
+        gameManager.GetComponent<GameManager>().freeze = true;
+
+        crowEnd = crow.transform;
+        teddyEnd = teddy.transform;
+        dollEnd = dolls.transform;
     }
 
     // Update is called once per frame
@@ -57,6 +70,33 @@ public class CinemaManager : MonoBehaviour
 
         gameManager.SetActive(true);
         enemyParent.SetActive(true);
+        gameManager.GetComponent<GameManager>().freeze = false;
+    }
+
+    public void EndGame()
+    {
+        if(dolls != null)
+        {
+            dolls.transform.position = dollEnd.position;
+            dolls.transform.rotation = dollEnd.rotation;
+        }
+
+        if(teddy != null)
+        {
+            teddy.transform.position = teddyEnd.position;
+            teddy.transform.rotation = teddyEnd.rotation;
+        }
+
+        if(crow != null)
+        {
+            crow.transform.position = crowEnd.position;
+            crow.transform.rotation = crowEnd.rotation;
+        }
+
+        player.transform.position = playerEnd.position;
+        player.transform.rotation = playerEnd.rotation;
+
+        gameManager.GetComponent<GameManager>().freeze = true;
     }
 
 }
