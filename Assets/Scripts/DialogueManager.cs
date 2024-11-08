@@ -9,7 +9,11 @@ public class DialogueManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI contentText;
     [SerializeField] Conversation conversation;
+    [SerializeField] TextMeshProUGUI speakerName;
+    [SerializeField] Conversation names;
     CanvasGroup DialogueGroup;
+
+    
 
     public int contentIndex;
     private void Start()
@@ -36,6 +40,7 @@ public class DialogueManager : MonoBehaviour
     {
         contentIndex++;
         contentText.text = conversation.content[contentIndex];
+        speakerName.text = names.content[contentIndex];
     }
 
     void EndDialogue()
@@ -64,6 +69,7 @@ public class DialogueManager : MonoBehaviour
         }));
 
         contentText.text = conversation.content[contentIndex];
+        speakerName.text = names.content[contentIndex];
     }
 }
 
