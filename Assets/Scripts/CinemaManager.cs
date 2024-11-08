@@ -20,13 +20,13 @@ public class CinemaManager : MonoBehaviour
     [SerializeField] Transform crowFinal;
     [SerializeField] Transform teddyFinal;
     [SerializeField] Transform dollFinal;
-    [SerializeField] bool isStart; 
+    [SerializeField] bool isStart;
 
     //End Game Position
-    Transform crowEnd;
-    Transform teddyEnd;
-    Transform dollEnd;
-    Transform playerEnd;
+    [SerializeField] Transform crowEnd;
+    [SerializeField] Transform teddyEnd;
+    [SerializeField] Transform dollEnd;
+    [SerializeField] Transform playerEnd;
 
     //private variables
 
@@ -39,9 +39,6 @@ public class CinemaManager : MonoBehaviour
 
         gameManager.GetComponent<GameManager>().freeze = true;
 
-        crowEnd = crow.transform;
-        teddyEnd = teddy.transform;
-        dollEnd = dolls.transform;
     }
 
     // Update is called once per frame

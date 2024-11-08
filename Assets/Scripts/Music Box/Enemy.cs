@@ -75,7 +75,6 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("111");
             //audioSource.Play();
             audioSource.PlayOneShot(clip);
             yield return new WaitForSeconds(GameManager.instance.playbackInterval);

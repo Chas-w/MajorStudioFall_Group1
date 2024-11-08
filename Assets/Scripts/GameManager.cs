@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI toyRemainText;
     public TextMeshProUGUI resultText;
     private float nightTimer;
+    public GameObject cinemaManager;
 
 
     [Header("Enemy Settings")]
@@ -99,23 +100,24 @@ public class GameManager : MonoBehaviour
 
     void GameEnd()
     {
-        freeze = true;
+        //freeze = true;
         nightTimerText.gameObject.SetActive(false);
         toyRemainText.gameObject.SetActive(false);
         finalScreen.GetComponent<CanvasGroup>().alpha += 0.01f;
+        cinemaManager.GetComponent<CinemaManager>().EndGame();
         switch (toyList.Count)
         {
             case 0:
-                resultText.text = "All toys are destroyed"; //waiting to be modified
+                resultText.text = "I’m sorry."; //waiting to be modified
                 break;
             case 1:
-                resultText.text = "1 toy left";//waiting to be modified
+                resultText.text = "Why did you let my friends die?";//waiting to be modified
                 break;
             case 2:
-                resultText.text = "2 toy left";//waiting to be modified
+                resultText.text = "Thank you. I guess. ";//waiting to be modified
                 break;
             case 3:
-                resultText.text = "3 toy left";//waiting to be modified
+                resultText.text = "Thank you. Thank you. Thank you! You saved us! Those meanies will burn in hell.";//waiting to be modified
                 break;
         }
             
