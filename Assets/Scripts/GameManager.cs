@@ -132,8 +132,6 @@ public class GameManager : MonoBehaviour
             Enemy enemy = musicBox.GetComponent<Enemy>();
             enemy.toy = enemyList[i].toy;
             enemy.spawnPos = enemyList[i].spawnPos;
-            enemy.pitch = enemyList[i].pitch;
-            enemy.clip = instrument.instrumentNotes[enemyList[i].pitch - 1];
             enemy.Spawn();
         }
     }

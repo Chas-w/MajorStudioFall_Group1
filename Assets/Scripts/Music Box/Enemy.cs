@@ -8,6 +8,7 @@ using UnityEngine.AI;
 using System;
 using System.Reflection;
 using TMPro;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : MonoBehaviour
 {
@@ -24,7 +25,10 @@ public class Enemy : MonoBehaviour
     float speed;
     float attackRange;
     [SerializeField] AudioSource audioSource;
-    
+
+    [Header("Match Data")]
+    public string songNotes;
+
     private void Awake()
     {
         cld = GetComponent<Collider>();
@@ -61,12 +65,9 @@ public class Enemy : MonoBehaviour
 
         if (distance <= GameManager.instance.killableRange)
         {
-            if (GameManager.instance.instrument.pitch > 0)
+            if (GameManager.instance.instrument.notesPlayed.Contains(songNotes))
             {
-                if (GameManager.instance.instrument.pitch == pitch)
-                {
-                    Spawn();
-                }
+                Spawn();
             }
         }
     }
@@ -76,8 +77,25 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             //audioSource.Play();
+            Debug.Log(int.Parse(songNotes[0].ToString()));
+            clip = GameManager.instance.instrument.instrumentNotes[int.Parse(songNotes[0].ToString()) - 1];
+           
             audioSource.PlayOneShot(clip);
-            yield return new WaitForSeconds(GameManager.instance.playbackInterval);
+            if (songNotes.Length > 1)
+            {
+                yield return new WaitForSeconds(0.5f);
+                clip = GameManager.instance.instrument.instrumentNotes[int.Parse(songNotes[1].ToString()) - 1];
+                Debug.Log(int.Parse(songNotes[1].ToString()));
+                audioSource.PlayOneShot(clip);
+            }
+            if (songNotes.Length > 2)
+            {
+                yield return new WaitForSeconds(0.5f);
+                clip = GameManager.instance.instrument.instrumentNotes[int.Parse(songNotes[2].ToString()) - 1];
+                Debug.Log(int.Parse(songNotes[2].ToString()));
+                audioSource.PlayOneShot(clip);
+            }
+            yield return new WaitForSeconds (GameManager.instance.playbackInterval);
             //audioSource.Stop();
         }
     }
@@ -97,9 +115,17 @@ public class Enemy : MonoBehaviour
             pos = hit.position;  // Adjust spawn position to the nearest point on the NavMesh
         }
         */
+        int twoOrThree = UnityEngine.Random.Range(2, 4);
+        if (twoOrThree == 2)
+        {
+            songNotes = UnityEngine.Random.Range(1, 10).ToString() + UnityEngine.Random.Range(1, 10).ToString();
+        } else
+        {
+            songNotes = UnityEngine.Random.Range(1, 10).ToString() + UnityEngine.Random.Range(1, 10).ToString() + UnityEngine.Random.Range(1, 10).ToString();
+        }
+
         navA.Warp(pos);
         transform.position = pos;
-        audioSource.clip = clip;
     }
 
     Vector3 GetRandomPointInCircle(Vector3 pos, float radius)
@@ -175,5 +201,4 @@ public class EnemyInfo
 {
     public Transform spawnPos;
     public GameObject toy;
-    public int pitch;
 }

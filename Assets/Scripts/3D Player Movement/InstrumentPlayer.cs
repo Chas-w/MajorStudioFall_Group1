@@ -127,13 +127,13 @@ public class InstrumentPlayer: MonoBehaviour
         
         if (noteCounter <= noteCounterMax)
         {
-            notesPlayed += notesCollection[index];
+            notesPlayed += (notesCollection[index]);
         }
 
         if (noteCounter > noteCounterMax )
         {
-            notesPlayed = "";
-            noteCounter = 0;
+            notesPlayed = notesPlayed.Substring(1);
+            notesPlayed += (notesCollection[index]);
         }
     }
     void TempoCheck()

@@ -127,6 +127,7 @@ MonoBehaviour:
   canMove: 0
   mbManager: {fileID: 2409956198439317739}
   audioSource: {fileID: 7781257216361094725}
+  songNotes: 
 --- !u!114 &2409956198439317739
 MonoBehaviour:
   m_ObjectHideFlags: 0

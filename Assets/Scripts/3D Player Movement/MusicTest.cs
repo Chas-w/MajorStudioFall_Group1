@@ -5,7 +5,7 @@ using UnityEngine;
 public class MusicTest : MonoBehaviour
 {
     [Header("Instrument Data")]
-    public InstrumentPlayer instrumentPlayer;
+    InstrumentPlayer instrumentPlayer;
 
     [Header("Song Data")]
     public int songLength;
@@ -16,7 +16,7 @@ public class MusicTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        instrumentPlayer = GameManager.instance.instrument;
     }
 
     // Update is called once per frame
