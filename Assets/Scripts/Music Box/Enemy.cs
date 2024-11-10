@@ -1,14 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEditor.AI;
 using UnityEngine.AI;
 using System;
-using System.Reflection;
-using TMPro;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : MonoBehaviour
 {
