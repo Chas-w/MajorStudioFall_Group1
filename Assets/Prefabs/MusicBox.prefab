@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5565758408020652831}
   - component: {fileID: 2409956198439317739}
   - component: {fileID: 7781257216361094725}
+  - component: {fileID: -4674281824446484550}
   m_Layer: 7
   m_Name: MusicBox
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.1, y: 20.4, z: 5.1}
+  m_LocalScale: {x: 7, y: 28, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4867572824823991709}
@@ -165,7 +166,7 @@ AudioSource:
   Priority: 0
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 75
+  MaxDistance: 150
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -240,6 +241,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4674281824446484550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8000627263546787715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949948c0e498c7046b50a4008caae5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepTimer: 0.75
+  stepTimerMax: 0.75
+  stepSource: {fileID: 7781257216361094725}
+  footsteps:
+  - {fileID: 8300000, guid: e0244c0464dc0fe49859c308bc602340, type: 3}
+  - {fileID: 8300000, guid: ceb94e9b25d4800448b35080841f9d5c, type: 3}
 --- !u!1001 &4902078913486252662
 PrefabInstance:
   m_ObjectHideFlags: 0
