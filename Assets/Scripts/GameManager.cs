@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI resultText;
     private float nightTimer;
     public GameObject cinemaManager;
+    public GameObject endScreen;
+    public GameObject tryAgain;
 
 
     [Header("Enemy Settings")]
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
     public float verticalSensitivity;
     public List<GameObject> toyList;
     //public GameObject currentHoldingToy;
+    bool canTryAgain;
 
     [Header("Puzzle Status")]
     public bool puzzleSolved = false;
@@ -67,6 +71,9 @@ public class GameManager : MonoBehaviour
         freeze = false;
         nightTimer = nightDuration;
         SpawnEnemy();
+
+        endScreen.SetActive(false);
+        tryAgain.SetActive(false);
     }
 
     // Update is called once per frame
@@ -75,11 +82,16 @@ public class GameManager : MonoBehaviour
         NightTimeCountDown();
         CheckToyCount();
         //EnemyMovement();
+
+        if(canTryAgain && Input.GetKey(KeyCode.Space))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     void CheckToyCount()
     {
-        toyRemainText.text = "Toy Remain: " + toyList.Count.ToString();
+        toyRemainText.text = "Toys Remaining: " + toyList.Count.ToString();
         if (toyList.Count == 0)
         {
             GameEnd();
@@ -91,7 +103,7 @@ public class GameManager : MonoBehaviour
         if (nightTimer > 0)
         {
             nightTimer -= Time.deltaTime;
-            nightTimerText.text = "Night Time Remain: " + Mathf.Round(nightTimer).ToString() + "s";
+            nightTimerText.text = "Night Time Remaining: " + Mathf.Round(nightTimer).ToString() + "s";
         } else
         {
             GameEnd();
@@ -105,19 +117,25 @@ public class GameManager : MonoBehaviour
         toyRemainText.gameObject.SetActive(false);
         finalScreen.GetComponent<CanvasGroup>().alpha += 0.01f;
         cinemaManager.GetComponent<CinemaManager>().EndGame();
+        canTryAgain = true;
         switch (toyList.Count)
         {
             case 0:
-                resultText.text = "I’m sorry."; //waiting to be modified
+                resultText.text = "I’m sorry I couldn't save you."; //waiting to be modified
+                endScreen.SetActive(true);
+                finalScreen.SetActive(false);
                 break;
             case 1:
                 resultText.text = "Why did you let my friends die?";//waiting to be modified
+                tryAgain.SetActive(true);
                 break;
             case 2:
                 resultText.text = "Thank you. I guess. ";//waiting to be modified
+                tryAgain.SetActive(true);
                 break;
             case 3:
                 resultText.text = "Thank you. Thank you. Thank you! You saved us! Those meanies will burn in hell.";//waiting to be modified
+                tryAgain.SetActive(true);
                 break;
         }
             
